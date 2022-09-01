@@ -1,0 +1,27 @@
+.ItemForCartShow{
+    background-color: rgb(99, 53, 185);
+    color:rgb(230, 230, 230);
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin-bottom: 10px;
+    margin-right: 3px;
+    margin-left: 1px;
+    padding-right: 10px;
+    border-radius: 0px 26px 26px 26px;
+    font-size: smaller;
+}
+.btnList{
+    height: 30px ;
+    width: 30px;
+    align-self: center;
+}
+.mainCartDiv{
+    margin: 10px;
+    border: 0.7px dashed black;
+    font-size: larger;
+}
+.il{
+    padding-left: 20px;
+}

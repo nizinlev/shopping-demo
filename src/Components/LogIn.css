@@ -1,0 +1,28 @@
+
+.mainDivLog{
+    display:flex;
+    margin :10% 30%;
+    /* padding: 5% 10%; */
+    min-width: 270px;
+    max-width: 440px;
+    min-height: 368px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 35%;
+    height: 30%;
+    color:beige;
+    background-color: rgb(51,0,102);
+}
+.btnLogIn{
+    width:100px;
+    height: 28px;
+}
+@media screen and (max-width: 768px){
+    .mainDivLog{
+        width: 270px;
+        height: 368px;
+    }
+    
+   
+}
