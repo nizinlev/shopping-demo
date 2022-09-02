@@ -84,7 +84,6 @@ const userNameSlice= createSlice({
             state.userList[state.choosenUser].totalPrice += newItem.price;
         },
         addToFavour(state,action){
-            debugger
             const newItemFav=action.payload;
             const existingItem= state.userList[state.choosenUser].userFavour.find((item)=>item.name==newItemFav.name)
             if(existingItem){

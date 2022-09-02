@@ -17,8 +17,8 @@ const ItemForCartShow = ({price,quantity,total,name}) => {
   }
   return (
     <div className='ItemForCartShow'>
-        <h2>{name}</h2>
-        <h3>price: ${price}</h3><br/>
+        <h2 style={{color:'#a67474'}}>{name}</h2>
+        {/* <h3>price: ${price}</h3><br/> */}
         <h3>qut: {quantity}</h3><br/>
         <h3>total: {total}</h3>
         <button className='btnList' onClick={addQnt}>+</button>

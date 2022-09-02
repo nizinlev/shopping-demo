@@ -24,7 +24,7 @@ const Header = () => {
         <Menu/>
         <h1>nice to see you {userName} - shooping</h1>
         </div>
-        <div className='rigthHed'>
+        <div className='rightHed'>
         <Cart/>
         <button className='button' onClick={backPage}>log out</button>
         </div>
