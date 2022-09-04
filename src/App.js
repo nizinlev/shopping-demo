@@ -12,12 +12,12 @@ import Notification from './Components/Notification';
 import { uiActions } from './store/ui-slice';
 import { userActions } from './store/user-name';
 
-let isFirstRender=true;
+let isFirstRender=0;
 
 function App() {
   const dispatch=useDispatch()
   const note=useSelector(state=>state.ui.notifiction)
-  const userName= useSelector(state=>state.userName)
+  const userList= useSelector(state=>state.userName.userList)
   const flag= useSelector( state => state.userName.flagCheck)
   const flagReg= useSelector(state=> state.userName.flagReg)
   const link=useSelector(state=>state.userName.userList[state.userName.choosenUser].name)
@@ -26,17 +26,43 @@ function App() {
     if(flag==true){return <Header/>}
   }
 
+useEffect(()=>{
+  const fetchData=async()=>{
+      const fetchHandler = async()=>{
+        const res = await fetch ('https://shooping-app-19137-default-rtdb.firebaseio.com/usercart.json');
+        const data= await res.json();
+        return data;
+      }
+      try{
+        debugger
+        const userData=await fetchHandler();
+        dispatch(userActions.replaceData(userData))
+      }catch(err){
+        dispatch(uiActions.shownotifi({
+          open:true,
+          type: 'error',
+          message: 'sending failed failed failed'
+        }))        
+    }
+  }
+  fetchData()
+},[dispatch])
 
   // useEffect(() =>{
+  //   debugger
   //   const fetchData= async()=>{
+  //     debugger
+  //     return  (dispatch)=>{
+  //       debugger
   //     const fetchHandle=async()=>{
+  //       debugger
   //       const result=await fetch('https://shooping-app-19137-default-rtdb.firebaseio.com/usercart.json');
   //       const data=await result.json();
   //       return data;
-  //     }
-      
+  //     };      
   //     try{
-  //       const userData=await fetchHandle();
+  //       debugger
+  //       const userData= fetchHandle();
   //       dispatch(userActions.replaceData(userData))
   //     }
   //     catch(err){
@@ -47,17 +73,15 @@ function App() {
   //         message: 'sending failed'
   //       }));
   //     }
-  //   }
+  //   }}
   //   fetchData()
 
-  
-     
-  // },[dispatch])
+  // },[isFirstRender,dispatch])
 
 
   useEffect(()=>{
-    if(isFirstRender){
-      isFirstRender=false;
+    if(isFirstRender<2){
+      isFirstRender++;
       return;
     }
     const sendRequst= async()=>{
@@ -68,7 +92,7 @@ function App() {
       }))
       const res=await fetch('https://shooping-app-19137-default-rtdb.firebaseio.com/usercart.json',{
         method: 'PUT',
-        body: JSON.stringify(userName)
+        body: JSON.stringify(userList)
       });
       const data= await res.json()
       dispatch(uiActions.shownotifi({
@@ -84,7 +108,8 @@ function App() {
         message: 'sending failed'
       }))
     });
-  },[userName])
+  },[userList])
+
   return (
     <div className="App">
       {note &&<Notification type={note.type} message={note.message}/>}

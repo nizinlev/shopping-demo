@@ -5,8 +5,8 @@ const userNameSlice= createSlice({
     name: 'userName',
     initialState: {
         userList:[
-        {name:'aaaa',password:'123456',cartList:[],index: 0,totalQuantity: 0,totalPrice: 0,userFavour:[]},
-        {name:'bbbb',password:'111111',cartList:[],index: 1,totalQuantity: 0,totalPrice: 0,userFavour:[]}],
+        {name:'aaaa',password:'123456',cartList:[],index: 0,totalQuantity: 0,totalPrice: 0,userFavour:[],},
+        {name:'bbbb',password:'111111',cartList:[],index: 1,totalQuantity: 0,totalPrice: 0,userFavour:[],}],
         choosenUser: 0,
         flagCheck:false,
         flagReg: false,
@@ -17,14 +17,15 @@ const userNameSlice= createSlice({
     },
     reducers: {
         replaceData(state,action){
-                state.userList=action.payload.userList
-                state.choosenUser=action.payload. choosenUser
-                state.flagCheck=action.payload.flagCheck
-                state.flagReg=action.payload.flagReg
-                state.logInAlert=action.payload.logInAlert
-                state.showCart=action.payload.showCart
-                state.typeItems=action.payload.typeItems
-                state.showBurger=action.payload.showBurger
+            const pushFavorite=action.payload;
+            state.userList=action.payload;
+            for(let i=0;i<state.userList.length;i++){
+                if(state.userList[i].userFavour){}
+                else{
+                    state.userList[i].userFavour=[];
+                }
+            }
+
         },
         showBurgerMenu(state,action){
             if(state.showBurger=='none'){

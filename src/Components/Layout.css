@@ -77,6 +77,7 @@ font-size:x-large;
 @media screen and (max-width: 440px) {
     .product{
         width: 80%;
+        margin-left: 0px;
     }
     .itemsLayout{
         font-size: smaller;

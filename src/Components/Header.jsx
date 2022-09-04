@@ -22,7 +22,7 @@ const Header = () => {
     <div className='headDiv'>
       <div>
         <Menu/>
-        <h1>nice to see you {userName} - shooping</h1>
+        <h1>Nice to see you {userName} - good trip</h1>
         </div>
         <div className='rightHed'>
         <Cart/>

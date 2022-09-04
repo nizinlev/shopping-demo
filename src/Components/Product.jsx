@@ -6,10 +6,10 @@ import { userActions } from '../store/user-name';
 
 
     const Product=({name,id,price,url})=>{
-      const existItm=useSelector(state=>state.userName.userList[state.userName.choosenUser].userFavour.find(item=>item.name==name))
+      const existItm=useSelector((state=>state.userName.userList[state.userName.choosenUser].userFavour.find(item=>item.name==name)))
+      console.log(existItm)
       const dispatch= useDispatch()
-      
-
+    
       const addTo=()=>{
         dispatch(userActions.addToCart({
           name,
