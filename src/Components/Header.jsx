@@ -10,7 +10,7 @@ import Menu from './Menu';
 
 const Header = () => {
   const nav=useNavigate()
-  const userName= useSelector((state)=>state.userName.userList[state.userName.choosenUser].name)
+  const userName= useSelector((state)=>state.userName.userList[state.userName.chosenUser].name)
     const dispatch= useDispatch()
     const backPage= (e)=>{
       e.preventDefault();

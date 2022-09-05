@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import ItemForCartShow from './ItemForCartShow'
 
 const CartShow = () => {
-    const itemList=useSelector(state=>state.userName.userList[state.userName.choosenUser].cartList)
+    const itemList=useSelector(state=>state.userName.userList[state.userName.chosenUser].cartList)
   return (
     <div className='mainCartDiv'>
         <h2>my cart</h2> 

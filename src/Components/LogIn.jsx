@@ -1,11 +1,10 @@
-import React, { useEffect, useMemo } from 'react'
+import React from 'react'
 import './LogIn.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 import {userActions} from '../store/user-name'
 import { useNavigate } from 'react-router-dom'
 
-let isFirstRenders=0
 
 export default function LogIn() {
   const nav= useNavigate()
@@ -15,7 +14,6 @@ export default function LogIn() {
   const [name,setName]=useState('')
   const [pass,setPass]=useState('')
   const checkUsers=useSelector(state=>state.userName.userList)
-  const textCheck= useSelector(state=>state.userName.logInAlert)
 
 
 
@@ -30,9 +28,9 @@ export default function LogIn() {
       return false;
     }
     else{
-      const exsistenUser =checkUsers.find((user)=>name==user.name&&pass==user.password)
-      if(exsistenUser){
-        let index=exsistenUser.index
+      const existentUser =checkUsers.find((user)=>name==user.name&&pass==user.password)
+      if(existentUser){
+        let index=existentUser.index
         dispatch(userActions.putDetails({
           index
         }))  

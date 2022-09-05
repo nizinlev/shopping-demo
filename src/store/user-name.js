@@ -7,7 +7,7 @@ const userNameSlice= createSlice({
         userList:[
         {name:'aaaa',password:'123456',cartList:[],index: 0,totalQuantity: 0,totalPrice: 0,userFavour:[],},
         {name:'bbbb',password:'111111',cartList:[],index: 1,totalQuantity: 0,totalPrice: 0,userFavour:[],}],
-        choosenUser: 0,
+        chosenUser: 0,
         flagCheck:false,
         flagReg: false,
         logInAlert:false,
@@ -47,7 +47,7 @@ const userNameSlice= createSlice({
             })
         },
         putDetails(state,action){
-                state.choosenUser=action.payload.index
+                state.chosenUser=action.payload.index
                 state.flagCheck=true;
                 state.logInAlert=false
         },
@@ -60,13 +60,13 @@ const userNameSlice= createSlice({
         },
         addToCart(state,action){
             const newItem= action.payload;
-            const existingItem= state.userList[state.choosenUser].cartList.find((item)=>item.name==newItem.name)
+            const existingItem= state.userList[state.chosenUser].cartList.find((item)=>item.name==newItem.name)
             if(existingItem){
                 existingItem.quantity+=1;
                 existingItem.totalPrice += newItem.price;
             }
             else{
-                state.userList[state.choosenUser].cartList.push({
+                state.userList[state.chosenUser].cartList.push({
                     id: newItem.id,
                     price: newItem.price,
                     quantity: 1, 
@@ -75,17 +75,17 @@ const userNameSlice= createSlice({
                 })
                 
             }
-            state.userList[state.choosenUser].totalQuantity++;
-            state.userList[state.choosenUser].totalPrice += newItem.price;
+            state.userList[state.chosenUser].totalQuantity++;
+            state.userList[state.chosenUser].totalPrice += newItem.price;
         },
-        addToFavour(state,action){
+        addToFavor(state,action){
             const newItemFav=action.payload;
-            const existingItem= state.userList[state.choosenUser].userFavour.find((item)=>item.name==newItemFav.name)
+            const existingItem= state.userList[state.chosenUser].userFavour.find((item)=>item.name==newItemFav.name)
             if(existingItem){
-                state.userList[state.choosenUser].userFavour=state.userList[state.choosenUser].userFavour.filter((item)=>item.name!==newItemFav.name)
+                state.userList[state.chosenUser].userFavour=state.userList[state.chosenUser].userFavour.filter((item)=>item.name!==newItemFav.name)
             }
             else{
-                state.userList[state.choosenUser].userFavour.push({
+                state.userList[state.chosenUser].userFavour.push({
                     id: newItemFav.id,
                     price: newItemFav.price,
                     name: newItemFav.name,
@@ -97,16 +97,16 @@ const userNameSlice= createSlice({
         },
         removeFromCart(state,action){
             const id=action.payload
-            const existingItem = state.userList[state.choosenUser].cartList.find((item)=>item.name==id.name);
+            const existingItem = state.userList[state.chosenUser].cartList.find((item)=>item.name==id.name);
             if(existingItem.quantity===1){
-                state.userList[state.choosenUser].cartList=state.userList[state.choosenUser].cartList.filter((item)=>item.name!==id.name)
+                state.userList[state.chosenUser].cartList=state.userList[state.chosenUser].cartList.filter((item)=>item.name!==id.name)
             }
             else{
                 existingItem.quantity--;
                 existingItem.totalPrice-= existingItem.price;
             }
-            state.userList[state.choosenUser].totalQuantity--;
-            state.userList[state.choosenUser].totalPrice -= id.price;
+            state.userList[state.chosenUser].totalQuantity--;
+            state.userList[state.chosenUser].totalPrice -= id.price;
         },
         setShowCart(state){
             state.showCart=!state.showCart;

@@ -6,7 +6,7 @@ import { userActions } from '../store/user-name';
 
 
     const Product=({name,id,price,url})=>{
-      const existItm=useSelector((state=>state.userName.userList[state.userName.choosenUser].userFavour.find(item=>item.name==name)))
+      const existItm=useSelector((state=>state.userName.userList[state.userName.chosenUser].userFavour.find(item=>item.name==name)))
       console.log(existItm)
       const dispatch= useDispatch()
     
@@ -17,8 +17,8 @@ import { userActions } from '../store/user-name';
           price
         }))
       }
-      const addToFavorit=()=>{
-        dispatch(userActions.addToFavour({
+      const addToFavorite=()=>{
+        dispatch(userActions.addToFavor({
           name,
           id,
           price
@@ -29,7 +29,7 @@ import { userActions } from '../store/user-name';
   return (
     <div className='product'>
       <div className='starDiv'> 
-      <span class="material-symbols-outlined" style={{color:existItm ? 'yellow' : 'black' }} onClick={addToFavorit}>grade</span>
+      <span class="material-symbols-outlined" style={{color:existItm ? 'yellow' : 'black' }} onClick={addToFavorite}>grade</span>
       </div>
       <div >
         <img src={url} alt={'img'} className='img'/>

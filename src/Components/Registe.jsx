@@ -47,7 +47,7 @@ const Registe = () => {
         <input onChange={(e)=>{setNewName(e.target.value)}} placeholder='name'/>
         <p>password</p>
         <input ref={myRef} onChange={(e)=>{setPass(e.target.value)}} placeholder='password'/>
-        <p>comfirm password</p>
+        <p>confirm password</p>
         <input ref={confirmRef} onChange={(e)=>{setConPass(e.target.value)}} placeholder='confirm password'/>
         <p style={{color:'red'}}>{textAlert}</p><br/>
         <button className='signIn' onClick={addUserName}>register now</button>

@@ -1,6 +1,5 @@
-import React, {useState,useEffect} from 'react'
-import { Link } from 'react-router-dom'
-import {useSelector,useDispatch} from 'react-redux'
+import React, {useState} from 'react'
+import {useDispatch} from 'react-redux'
 import { userActions } from '../store/user-name'
 import './Menu.css';
 import Burgermenu from './Burgermenu';

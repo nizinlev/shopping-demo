@@ -1,10 +1,9 @@
-import React, { useEffect , useState} from 'react';
+import React, { useEffect} from 'react';
 import  {BrowserRouter,Routes,Route, Link} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 import LogIn from './Components/LogIn';
 import Layout from './Components/Layout';
 import Registe from './Components/Registe';
-import Menu from './Components/Menu';
 import './App.css';
 import Favourites from './Components/Favourites';
 import Header from './Components/Header';
@@ -20,7 +19,7 @@ function App() {
   const userList= useSelector(state=>state.userName.userList)
   const flag= useSelector( state => state.userName.flagCheck)
   const flagReg= useSelector(state=> state.userName.flagReg)
-  const link=useSelector(state=>state.userName.userList[state.userName.choosenUser].name)
+  const link=useSelector(state=>state.userName.userList[state.userName.chosenUser].name)
   
   const showMenu =()=>{
     if(flag==true){return <Header/>}

@@ -1,4 +1,4 @@
-import React, {useState,useEffect} from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom'
 import {useSelector,useDispatch} from 'react-redux'
 import { userActions } from '../store/user-name'
@@ -6,7 +6,7 @@ import './Menu.css';
 
 function Rightmenu(props) {
   const dispatch=useDispatch()
-  const link=useSelector(state=>state.userName.userList[state.userName.choosenUser].name)
+  const link=useSelector(state=>state.userName.userList[state.userName.chosenUser].name)
   const changeType=(e)=>{
     dispatch(userActions.changeType(e))
     props.showBurger();
