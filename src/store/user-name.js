@@ -10,20 +10,21 @@ const userNameSlice= createSlice({
         choosenUser: 0,
         flagCheck:false,
         flagReg: false,
-        logInAlert:'',
+        logInAlert:false,
         showCart: false,
         typeItems: 'home',
         showBurger: 'none',
     },
     reducers: {
         replaceData(state,action){
-            const pushFavorite=action.payload;
             state.userList=action.payload;
             for(let i=0;i<state.userList.length;i++){
-                if(state.userList[i].userFavour){}
-                else{
+                if(!state.userList[i].userFavour){
                     state.userList[i].userFavour=[];
                 }
+                if(!state.userList[i].cartList){
+                    state.userList[i].cartList=[];
+                }                  
             }
 
         },
@@ -45,17 +46,10 @@ const userNameSlice= createSlice({
                 userFavour:[],
             })
         },
-        checkUser(state,action){
-            const userDetail= action.payload;
-            const exsistenUser =state.userList.find((item)=>userDetail.name==item.name||userDetail.password==item.password)
-            if(exsistenUser){
-                state.choosenUser=exsistenUser.index
+        putDetails(state,action){
+                state.choosenUser=action.payload.index
                 state.flagCheck=true;
-            }
-            else{
-                state.logInAlert='incurrect details'
-                return false;
-            }
+                state.logInAlert=false
         },
         signIn(state){
             state.flagReg=true

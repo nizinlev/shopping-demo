@@ -1,37 +1,48 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import './LogIn.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 import {userActions} from '../store/user-name'
 import { useNavigate } from 'react-router-dom'
 
+let isFirstRenders=0
+
 export default function LogIn() {
   const nav= useNavigate()
-  const textCheck= useSelector(state=>state.userName.logInAlert)
   const [temp,setTemp]=useState('')
   const [tempPass,setTempPass]=useState('')
   const dispatch= useDispatch()
   const [name,setName]=useState('')
   const [pass,setPass]=useState('')
-  const nextPage= (name,pass)=>{
-    dispatch(userActions.checkUser({
-      name,
-      pass
-    }))
-  }
-  const checkDetails=()=>{
+  const checkUsers=useSelector(state=>state.userName.userList)
+  const textCheck= useSelector(state=>state.userName.logInAlert)
+
+
+
+  const checkDetails=(name,pass)=>{
     if(name.length<4 || !/^[a-zA-Z]+$/.test(name)){
-      setTemp('user name contain 4 letter - only letters')
+      setTempPass("")
+      setTemp('username should have 4 characters, letters only')
+      return false
     }
     if(pass.length<6){
-      setTempPass(' password mut be more then 6') 
+      setTempPass('password must be more then 6 letter') 
+      return false;
     }
     else{
-      nextPage(name,pass);
-      setTempPass(textCheck);
-      nav(`/home+${name}`)
-    }
-  }
+      const exsistenUser =checkUsers.find((user)=>name==user.name&&pass==user.password)
+      if(exsistenUser){
+        let index=exsistenUser.index
+        dispatch(userActions.putDetails({
+          index
+        }))  
+        nav(`/home+${name}`)
+      }
+      else{
+        setTempPass("incorrect details")
+      }
+    }}
+
   const getSignInPage=(e)=>{
     e.preventDefault();
     dispatch(userActions.signIn())
@@ -43,9 +54,9 @@ export default function LogIn() {
       <input onChange={(e)=>{setName(e.target.value);setTemp('')}} placeholder='Enter your name'/>
       <h3>password</h3>
       <input type='password' onChange={(e)=>{setPass(e.target.value);setTempPass('')}} placeholder='Enter your password'/><br/>
-      <button className='btnLogIn' onClick={checkDetails}>log in</button>
-      <p style={{color : 'red'}}>{temp}<br/>{textCheck}</p>
-      <a onClick={getSignInPage}> sign in now</a>
+      <button className='signIn' onClick={()=>{checkDetails(name,pass)}}>log in</button>
+      <p style={{color : 'red'}}>{temp}<br/>{tempPass}</p>
+      <button className='btnLogIn' onClick={getSignInPage}> sign in now</button>
     </div>
   )
 }

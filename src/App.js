@@ -34,7 +34,6 @@ useEffect(()=>{
         return data;
       }
       try{
-        debugger
         const userData=await fetchHandler();
         dispatch(userActions.replaceData(userData))
       }catch(err){
@@ -48,35 +47,6 @@ useEffect(()=>{
   fetchData()
 },[dispatch])
 
-  // useEffect(() =>{
-  //   debugger
-  //   const fetchData= async()=>{
-  //     debugger
-  //     return  (dispatch)=>{
-  //       debugger
-  //     const fetchHandle=async()=>{
-  //       debugger
-  //       const result=await fetch('https://shooping-app-19137-default-rtdb.firebaseio.com/usercart.json');
-  //       const data=await result.json();
-  //       return data;
-  //     };      
-  //     try{
-  //       debugger
-  //       const userData= fetchHandle();
-  //       dispatch(userActions.replaceData(userData))
-  //     }
-  //     catch(err){
-  //       dispatch(
-  //         uiActions.shownotifi({
-  //         open:true,
-  //         type: 'error',
-  //         message: 'sending failed'
-  //       }));
-  //     }
-  //   }}
-  //   fetchData()
-
-  // },[isFirstRender,dispatch])
 
 
   useEffect(()=>{
